@@ -1,4 +1,3 @@
-package model.entidades;
 
 public class Invoice {
 
