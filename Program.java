@@ -9,6 +9,8 @@ public class Program {
 	
 	public static void main(String[] args) {
 		
+		//ja com a branch nova
+		
 		Scanner ler = new Scanner(System.in);
 
         Locale.setDefault(Locale.US);
@@ -33,10 +35,20 @@ public class Program {
 
         System.out.println("Entre com o preço por dia");
         Double precoDia = ler.nextDouble();
+        
+        RentalService rentalservice = new RentalService(precoHora,precoDia, new BrazilTaxService());
 
         CarRental cr = new CarRental(start, finish,v);
 
         System.out.println(cr);
+		
+		
+        rentalservice.processInvoice(cr);
+        
+        System.out.println("FATURA: ");
+        System.out.println("PAGAMENTO BASICO: " + cr.getInvoice().getBasicPayment());
+        System.out.println("IMPOSTO: " + cr.getInvoice().getTax());
+        System.out.println("PAGAMENTO TOTAL: " + cr.getInvoice().getTotalPayment());
         
 
         ler.close();
